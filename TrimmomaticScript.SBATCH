@@ -11,13 +11,13 @@ module load trimmomatic
 
 # Run Trimmomatic with absolute paths
 trimmomatic PE \
-/home/jm3335/HW4_input_files/EC-12_R1_001.fastq.gz \
-/home/jm3335/HW4_input_files/EC-12_R2_001.fastq.gz \
-/home/jm3335/HW4_output_files/EC-12_R1_trmPE.fq.gz /home/jm3335/HW4_output_files/EC-12_R1_trmSE.fq.gz \
-/home/jm3335/HW4_output_files/EC-12_R2_trmPE.fq.gz /home/jm3335/HW4_output_files/EC-12_R2_trmSE.fq.gz \
+/home/jm3335/inputfile.fastq.gz \
+/home/jm3335/inputfile.fastq.gz \
+/home/jm3335/outputR1_trmPE.fq.gz /home/jm3335outputR1_trmSE.fq.gz \
+/home/jm3335/outputR2_trmPE.fq.gz /home/jm3335/outputR2_trmSE.fq.gz \
 ILLUMINACLIP:/home/jm3335/HW4_input_files/TruSeq3-PE.fa:2:30:10 \
-LEADING:10 \
-TRAILING:10 \
+LEADING:15 \
+TRAILING:20 \
 SLIDINGWINDOW:4:15 \
 MINLEN:75
 
