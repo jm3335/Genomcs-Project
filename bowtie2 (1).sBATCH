@@ -8,7 +8,7 @@
 module load bowtie2
 
 
-# Run Trimmomatic for paired-end reads with the TruSeq3 adapter
+# Run bowtie2
 bowtie2 \
     -x baseindex \
     -1 WTB2_1.trPE.fq.gz \
