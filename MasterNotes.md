@@ -4,12 +4,15 @@ We begin the workflow with quality control (QC) using FastQC to generate a quali
 
 The next step involves counting the number of reads aligning to each gene model using HTSeq, generating a count matrix that serves as the foundation for differential expression analysis. We then analyze these counts in R using DESeq2, identifying genes that are significantly up- or downregulated between the Thi+ and Thi- conditions. Finally, Gene Ontology (GO) enrichment analysis is performed on the differentially expressed genes, providing insight into the biological processes affected by thiamine availability. This comprehensive workflow—from quality control to gene ontology analysis—enables a thorough investigation of how thiamine presence influences gene expression profiles.
 
+Quality Control:
+
 Quality control is a critical step in RNA-Seq data processing, ensuring high-quality data for accurate downstream analyses. This experiment involved three key stages of QC: initial quality assessment, trimming, and post-trimming evaluation, conducted on paired-end files (WTB2_1.fq.gz and WTB2_2.fq.gz).
 
 The initial FastQC analysis revealed quality issues in both files, with per-base sequence content being concering as well Per sequence GC content. These findings indicated a need for trimming to improve data reliability. Trimmomatic was thus used to address these quality issues with specific parameters: ILLUMINACLIP removed TruSeq adapter sequences, HEADCROP:15 eliminated the first 15 bases prone to sequencing errors, TRAILING:20 and SLIDINGWINDOW:4:15 dynamically trimmed regions with low average quality scores, and MINLEN:75 ensured only reads of sufficient length were retained. The trimming results showed high retention rates, with 95.69% of read pairs kept as high-quality forward and reverse pairs, while only 0.64% were dropped. The Script utilized for this step is titled "TrimmomaticScript.SBATCH."
 
 After this, a second FastQC analysis was performed on the trimmed files (WTB2_1.trPE.fq.gz and WTB2_2.trPE.fq.gz). This analysis confirmed substantial improvements: Per base sequence content was improved as well as Per sequence GC content. However, the concerns regarding Sequence Duplication Levels was not resolved as the second fastQC analysis still displayed concering levels of sequence duplication.
 
+Sequencing and Allignment:
 
 To map sequencing reads to a reference genome, we used the Candida albicans SC5314 genome assembly, which was obtained from the NCBI database (GCF_000182965.3). The reference genome file, in FASTA format, and the accompanying GTF annotation file were downloaded. The sequencing reads were aligned to this reference using Bowtie2, a widely used aligner suitable for mapping short reads to large genomes. Bowtie2 was employed to align the reads to the reference genome, generating output in SAM format. The SAM file contains detailed alignment information, including the position of each read relative to the reference, alignment quality, and associated metadata. The script utilized for the step is titled "bowtie2.sBATCH".
 
